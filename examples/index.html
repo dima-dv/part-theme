@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Shadow style</title>
+
+  <!-- favicon.png -->
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <!-- OpenSans font -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
+
+  <!-- Components  -->
+  <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../node_modules/@polymer/polymer/polymer-element.html">
+
+  <!-- <script type="module" src="../lib/part-theme.js"></script> -->
+    
+  <style>
+
+  :root
+  {
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  body
+  {
+    padding: 0px;
+    margin: 0px;
+  }
+
+  header
+  {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+
+    z-index: 10;
+
+    padding: 20px 20px;
+    
+    width: 100%;
+
+    background-color: #F2F3F7;
+    color: #2D343C;
+    
+    font-size: 32px;
+  }
+
+  .title
+  {
+    font-size: 32px;
+    padding-left: 20px;
+  }
+
+  main
+  {
+    display: block;
+    margin-top: 100px;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 32px;
+  }
+
+  </style>
+</head>
+
+<body>
+
+  <dom-module id="x-custom">
+    <template>
+      <div>
+        <div part="red">red</div>
+        <div part="green">green</div>
+        <div part="blue">blue</div>
+      </div>
+    </template>
+  </dom-module>
+
+  <dom-module id="x-custom2">
+    <template>
+      <div>
+        <x-custom part="first" partmap="red,green,blue"></x-custom>
+        <x-custom part="second" partmap="red,green,blue"></x-custom>
+        <x-custom part="third" partmap="red,green,blue"></x-custom>
+      </div>
+    </template>
+  </dom-module>
+
+  <script>
+    (async () => {
+      let {PartThemeMixin} = await import('../lib/part-theme.js');
+      //PartThemeMixin = superClass => superClass;
+
+      let XCustom = class extends PartThemeMixin(Polymer.Element) {
+        static get is() {
+          return "x-custom";
+        }
+      }
+      customElements.define(XCustom.is, XCustom);
+
+      let XCustom2 = class extends PartThemeMixin(Polymer.Element) {
+        static get is() {
+          return "x-custom2";
+        }
+      }
+      customElements.define(XCustom2.is, XCustom2);
+
+    })();
+  </script>
+  
+  
+  <style>
+    x-custom {
+      width: 120px;
+      text-align: center;
+      margin: 20px;
+      display: inline-block;
+      border:black;
+      border-width: 1px;
+      border-style: solid;
+    }
+
+    x-custom.colored {
+      color: white;
+    }
+
+    x-custom.colored:hover {
+      color: lightgray;
+    }
+
+    x-custom.colored::part(red) {
+      background: red;
+    }
+    x-custom.colored::part(green) {
+      background: yellow;
+    }
+    x-custom.colored::part(blue) {
+      background: blue;
+    }
+
+    x-custom.colored:hover::part(red) {
+      background: darkred;
+    }
+    x-custom.colored::part(green):hover {
+      background: darkgreen;
+    }
+    x-custom.colored:hover::part(blue) {
+      background: darkblue;
+    }
+    
+    x-custom2::part(first) {
+      width: 120px;
+      text-align: center;
+      margin: 20px;
+      display: inline-block;
+      border:black;
+      border-width: 1px;
+      border-style: solid;
+    }
+    x-custom2::part(second) {
+      width: 120px;
+      text-align: center;
+      margin: 20px;
+      display: inline-block;
+      border:black;
+      border-width: 1px;
+      border-style: solid;
+    }
+    x-custom2::part(third) {
+      width: 120px;
+      text-align: center;
+      margin: 20px;
+      display: inline-block;
+      border:black;
+      border-width: 1px;
+      border-style: solid;
+    }
+    x-custom2::part(red) {
+      background: red;
+      color: white;
+      border:black;
+      border-width: 5px;
+      border-style: dashed;
+    }
+    x-custom2::part(green) {
+      background: green;
+      color: white;
+      border:black;
+      border-width: 5px;
+      border-style: dotted;
+    }
+    x-custom2::part(blue) {
+      background: blue;
+      color: white;
+      border:black;
+      border-width: 5px;
+      border-style: double;
+    }
+  </style>
+
+<header id="header">
+  <section>
+    <div class="title">Parts style</div>
+  </section>
+</header>
+  
+<main>
+
+    <p><x-custom class="colored"></x-custom><x-custom></x-custom></p>
+    <p><x-custom2></x-custom2></p>
+
+</main>
+
+</body>
+
+</html>

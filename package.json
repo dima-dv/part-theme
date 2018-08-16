@@ -1,0 +1,9 @@
+{
+  "name": "shadow-style",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@polymer/polymer": "^2.6.0",
+    "@webcomponents/webcomponentsjs": "^1.1.1"
+  }
+}

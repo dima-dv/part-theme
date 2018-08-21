@@ -96,7 +96,7 @@
       let {PartThemeMixin} = await import('../lib/part-theme.js');
       //PartThemeMixin = superClass => superClass;
 
-      let XCustom = class extends PartThemeMixin(Polymer.Element) {
+      let XCustom = class extends PartThemeMixin(Polymer.Element, ['type'], ['primary','secondary']) {
         static get is() {
           return "x-custom";
         }
@@ -125,31 +125,31 @@
       border-style: solid;
     }
 
-    x-custom.colored {
+    x-custom.primary {
       color: white;
     }
 
-    x-custom.colored:hover {
+    x-custom.primary:hover {
       color: lightgray;
     }
 
-    x-custom.colored::part(red) {
+    x-custom.primary::part(red) {
       background: red;
     }
-    x-custom.colored::part(green) {
+    x-custom.primary::part(green) {
       background: yellow;
     }
-    x-custom.colored::part(blue) {
+    x-custom.primary::part(blue) {
       background: blue;
     }
 
-    x-custom.colored:hover::part(red) {
+    x-custom.primary:hover::part(red) {
       background: darkred;
     }
-    x-custom.colored::part(green):hover {
+    x-custom.primary::part(green):hover {
       background: darkgreen;
     }
-    x-custom.colored:hover::part(blue) {
+    x-custom.primary:hover::part(blue) {
       background: darkblue;
     }
     
@@ -211,7 +211,7 @@
   
 <main>
 
-    <p><x-custom class="colored"></x-custom><x-custom></x-custom></p>
+    <p><x-custom class="primary"></x-custom><x-custom></x-custom></p>
     <p><x-custom2></x-custom2></p>
 
 </main>

@@ -1,14 +1,13 @@
 # part-theme
 
 
-This is an experimental proof of concept shim for ::part or ::theme as defined
-here https://tabatkins.github.io/specs/css-shadow-parts/.
+This is an experimental proof of concept shim for ::part as defined
+here https://drafts.csswg.org/css-shadow-parts-1/.
 
-`PartThemeMixin` should be applied to any elements that define or consume css. Elements may instead just call `applyPartTheme(element)` to avoid use of the mixin.
+`PartThemeMixin` should be applied to any elements that define or consume css.
 
 ### Known Issues
 * Works only for custom-elements that implement the `PartThemeMixin`.
-* ::part/::theme selectors in main document styles are not applied.
 * styling for dom that modifies `part` attributes after connectedCallback
 requires use of the custom api `_applyPartTheme()`.
 * Usable only with native Shadow DOM. Does not work with ShadyCSS polyfill.
